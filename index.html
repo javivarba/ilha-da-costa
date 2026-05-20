@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ilha da Costa - Restaurante de Mariscos</title>
+    <title>Ilha da Costa - Restaurante de Mariscos Frescos</title>
     <style>
         * {
             margin: 0;
@@ -11,115 +11,98 @@
             box-sizing: border-box;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            color: #333;
             line-height: 1.6;
-            background-color: #fff;
+            color: #333;
+            background-color: #f9f9f9;
         }
 
-        /* HEADER Y NAVEGACIÓN */
         header {
-            background-color: #303031;
+            background-color: #7284ac;
             color: white;
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0 20px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
         }
 
         .logo {
             font-size: 1.8rem;
             font-weight: bold;
-            letter-spacing: 2px;
-            color: #679ac6;
+            letter-spacing: 1px;
         }
 
         nav ul {
-            display: flex;
             list-style: none;
+            display: flex;
             gap: 2rem;
         }
 
         nav a {
             color: white;
             text-decoration: none;
-            transition: color 0.3s ease;
-            font-size: 0.95rem;
+            font-weight: 500;
+            transition: opacity 0.3s ease;
+            border-radius: 8px;
+            padding: 0.5rem 1rem;
         }
 
         nav a:hover {
-            color: #679ac6;
+            opacity: 0.8;
+            background-color: rgba(255,255,255,0.1);
         }
 
         .menu-toggle {
             display: none;
-            flex-direction: column;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
             cursor: pointer;
         }
 
-        .menu-toggle span {
-            width: 25px;
-            height: 3px;
-            background-color: white;
-            margin: 5px 0;
-            border-radius: 3px;
-            transition: 0.3s;
-        }
-
-        /* HERO SECTION */
         .hero {
-            background: linear-gradient(rgba(48, 48, 49, 0.7), rgba(48, 48, 49, 0.7)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="wave" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse"><path d="M0,60 Q30,30 60,60 T120,60" fill="none" stroke="%23679ac6" stroke-width="2" opacity="0.3"/></pattern></defs><rect width="1200" height="600" fill="%23303031"/><rect width="1200" height="600" fill="url(%23wave)"/></svg>');
-            background-size: cover;
-            background-position: center;
+            background: linear-gradient(135deg, #7284ac 0%, #5a6a94 100%);
             color: white;
-            padding: 120px 20px;
+            padding: 8rem 2rem;
             text-align: center;
-            animation: fadeIn 1s ease-in;
+            position: relative;
+            overflow: hidden;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
         }
 
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
-            animation: slideDown 0.8s ease-out;
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
         }
 
-        @keyframes slideDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            animation: fadeInUp 1s ease-out;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            margin-bottom: 2rem;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-            animation: slideUp 0.8s ease-out;
-        }
-
-        @keyframes slideUp {
+        @keyframes fadeInUp {
             from {
                 opacity: 0;
                 transform: translateY(30px);
@@ -130,407 +113,704 @@
             }
         }
 
-        .cta-button {
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .btn {
             display: inline-block;
-            background-color: #679ac6;
-            color: white;
-            padding: 15px 40px;
+            padding: 1rem 2.5rem;
+            background-color: #fff;
+            color: #7284ac;
             text-decoration: none;
             border-radius: 50px;
-            font-size: 1.1rem;
+            font-weight: bold;
             transition: all 0.3s ease;
-            border: 2px solid #679ac6;
+            border: 2px solid white;
             cursor: pointer;
-            font-weight: 600;
-            margin: 0 10px;
         }
 
-        .cta-button:hover {
+        .btn:hover {
             background-color: transparent;
-            color: #679ac6;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(103, 154, 198, 0.3);
-        }
-
-        .cta-button.secondary {
-            background-color: transparent;
-            color: #679ac6;
-            border-color: #679ac6;
-        }
-
-        .cta-button.secondary:hover {
-            background-color: #679ac6;
             color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* SOBRE NOSOTROS */
-        .about {
-            padding: 80px 20px;
+        .container {
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 2rem;
         }
 
-        .about-container {
+        section {
+            padding: 4rem 2rem;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #7284ac;
+            margin-bottom: 3rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background-color: #7284ac;
+            border-radius: 2px;
+        }
+
+        #sobre-nosotros {
+            background-color: #fff;
+        }
+
+        .about-content {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 3rem;
             align-items: center;
         }
 
-        .about h2 {
-            font-size: 2.5rem;
-            color: #303031;
-            margin-bottom: 1.5rem;
+        .about-text h3 {
+            color: #7284ac;
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
         }
 
-        .about p {
-            font-size: 1.05rem;
+        .about-text p {
             color: #666;
             margin-bottom: 1.5rem;
             line-height: 1.8;
         }
 
-        .about-image {
-            background: linear-gradient(135deg, #679ac6, #303031);
-            height: 400px;
-            border-radius: 20px;
+        .about-features {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            box-shadow: 0 15px 40px rgba(103, 154, 198, 0.2);
-            animation: scaleIn 0.8s ease-out;
-        }
-
-        @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.95);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-top: 2rem;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .feature {
+            display: flex;
+            gap: 1rem;
             padding: 1.5rem;
-            background-color: #f8f9fa;
+            background-color: #f0f4f8;
             border-radius: 15px;
-            text-align: center;
             transition: all 0.3s ease;
         }
 
         .feature:hover {
-            background-color: #679ac6;
-            color: white;
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(103, 154, 198, 0.2);
+            background-color: #e6ecf4;
+            transform: translateX(5px);
         }
 
-        .feature h3 {
+        .feature-icon {
+            font-size: 2rem;
+            min-width: 50px;
+        }
+
+        .feature-text h4 {
+            color: #7284ac;
             margin-bottom: 0.5rem;
-            font-size: 1.2rem;
         }
 
-        /* SERVICIOS */
-        .services {
-            padding: 80px 20px;
-            background-color: #f8f9fa;
-        }
-
-        .services-container {
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .services h2 {
-            font-size: 2.5rem;
-            color: #303031;
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .service-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-            border-left: 5px solid #679ac6;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(103, 154, 198, 0.2);
-        }
-
-        .service-card h3 {
-            color: #303031;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
-        }
-
-        .service-card p {
-            color: #666;
-            line-height: 1.7;
+        .feature-text p {
             font-size: 0.95rem;
+            color: #666;
+            margin: 0;
         }
 
-        /* MENÚ */
-        .menu {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        #servicios {
+            background-color: #f9f9f9;
         }
 
-        .menu h2 {
-            font-size: 2.5rem;
-            color: #303031;
-            text-align: center;
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             margin-bottom: 3rem;
         }
 
         .menu-category {
-            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .menu-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(114, 132, 172, 0.15);
         }
 
         .menu-category h3 {
-            color: #679ac6;
+            color: #7284ac;
             font-size: 1.5rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 2px solid #679ac6;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .menu-items {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            display: flex;
+            flex-direction: column;
             gap: 1.5rem;
         }
 
         .menu-item {
-            background: white;
-            padding: 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-            transition: all 0.3s ease;
-            border-top: 3px solid #679ac6;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid #e0e0e0;
         }
 
-        .menu-item:hover {
-            box-shadow: 0 10px 30px rgba(103, 154, 198, 0.2);
-            transform: translateY(-3px);
+        .menu-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
-        .menu-item h4 {
-            color: #303031;
-            margin-bottom: 0.5rem;
+        .menu-item-name {
+            color: #333;
+            font-weight: bold;
             font-size: 1.1rem;
+            margin-bottom: 0.5rem;
         }
 
-        .menu-item p {
+        .menu-item-description {
             color: #666;
             font-size: 0.9rem;
             line-height: 1.6;
         }
 
-        /* INFORMACIÓN */
-        .info {
-            padding: 80px 20px;
-            background-color: #303031;
-            color: white;
+        #contacto {
+            background-color: white;
         }
 
-        .info-container {
-            max-width: 1200px;
-            margin: 0 auto;
+        .contact-content {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
             gap: 2rem;
         }
 
-        .info-box {
-            padding: 2rem;
-            background: rgba(255,255,255,0.05);
+        .contact-item {
+            display: flex;
+            gap: 1.5rem;
+            padding: 1.5rem;
+            background-color: #f0f4f8;
             border-radius: 15px;
-            border-left: 4px solid #679ac6;
             transition: all 0.3s ease;
         }
 
-        .info-box:hover {
-            background: rgba(103, 154, 198, 0.2);
-            transform: translateX(10px);
+        .contact-item:hover {
+            background-color: #7284ac;
+            color: white;
+            transform: translateX(5px);
         }
 
-        .info-box h3 {
-            color: #679ac6;
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
-        }
-
-        .info-box p {
-            font-size: 0.95rem;
-            line-height: 1.8;
-        }
-
-        .info-box a {
-            color: #679ac6;
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .info-box a:hover {
-            text-decoration: underline;
+        .contact-item:hover h4,
+        .contact-item:hover p {
             color: white;
         }
 
-        /* CONTACTO */
-        .contact {
-            padding: 80px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
+        .contact-icon {
+            font-size: 1.5rem;
+            min-width: 40px;
         }
 
-        .contact h2 {
-            font-size: 2.5rem;
-            color: #303031;
-            text-align: center;
-            margin-bottom: 3rem;
+        .contact-item h4 {
+            color: #7284ac;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item p {
+            color: #666;
+            margin: 0;
+            transition: color 0.3s ease;
+        }
+
+        .horario-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .horario-item:last-child {
+            border-bottom: none;
+        }
+
+        .horario-dia {
+            font-weight: bold;
+            color: #7284ac;
         }
 
         .contact-form {
-            max-width: 600px;
-            margin: 0 auto;
-            background: #f8f9fa;
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
         }
 
         .form-group {
-            margin-bottom: 1.5rem;
+            display: flex;
+            flex-direction: column;
         }
 
         .form-group label {
-            display: block;
-            margin-bottom: 0.5rem;
-            color: #303031;
+            color: #7284ac;
             font-weight: 600;
+            margin-bottom: 0.5rem;
         }
 
         .form-group input,
         .form-group textarea {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #ddd;
-            border-radius: 8px;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
             font-family: inherit;
-            font-size: 0.95rem;
-            transition: all 0.3s ease;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
         }
 
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #679ac6;
-            box-shadow: 0 0 10px rgba(103, 154, 198, 0.2);
+            border-color: #7284ac;
+            box-shadow: 0 0 0 3px rgba(114, 132, 172, 0.1);
         }
 
         .form-group textarea {
             resize: vertical;
-            min-height: 120px;
+            min-height: 150px;
         }
 
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background-color: #679ac6;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            background-color: #303031;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(103, 154, 198, 0.3);
-        }
-
-        /* FOOTER */
         footer {
-            background-color: #303031;
+            background-color: #7284ac;
             color: white;
-            padding: 2rem;
             text-align: center;
-            border-top: 3px solid #679ac6;
+            padding: 2rem;
+            margin-top: 3rem;
         }
 
         footer p {
-            margin-bottom: 0.5rem;
+            margin: 0.5rem 0;
         }
 
-        /* RESPONSIVE */
         @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #7284ac;
+                flex-direction: column;
+                display: none;
+                width: 100%;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                width: 100%;
+            }
+
+            nav a {
+                padding: 1rem 2rem;
+                border-radius: 0;
+                display: block;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                padding: 4rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
             }
 
             .hero p {
                 font-size: 1rem;
             }
 
-            nav ul {
-                gap: 1rem;
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
             }
 
-            nav a {
-                font-size: 0.8rem;
+            section {
+                padding: 2rem 1rem;
             }
 
-            .about-container {
-                grid-template-columns: 1fr;
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 2rem;
             }
 
-            .features {
-                grid-template-columns: 1fr;
+            .feature,
+            .contact-item {
+                padding: 1rem;
             }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">🌊 Ilha da Costa</div>
+        <button class="menu-toggle" id="menuToggle">☰</button>
+        <nav id="nav">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#sobre-nosotros">Nosotros</a></li>
+                <li><a href="#servicios">Menú</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            .services h2,
-            .menu h2,
-            .contact h2,
-            .about h2 {
-                font-size: 2rem;
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <h1>Ilha da Costa</h1>
+            <p>Un refugio donde el murmullo del oleaje y el sabor del océano se encuentran en cada plato. Descubre la frescura de las costas vírgenes en nuestra cocina artesanal.</p>
+            <a href="#servicios" class="btn">Explora Nuestro Menú</a>
+        </div>
+    </section>
+
+    <section id="sobre-nosotros">
+        <div class="container">
+            <h2 class="section-title">Sobre Nosotros</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Experiencia Marina en Cada Bocado</h3>
+                    <p>En Ilha da Costa, creemos que la mejor cocina es aquella que honra los ingredientes frescos del mar. Cada día, nuestro equipo selecciona cuidadosamente la pesca más fresca para transformarla en experiencias culinarias inolvidables.</p>
+                    <p>Nuestro restaurante es más que un lugar para comer; es un viaje sensorial donde la brisa marina, el aroma de la madera flotante y la pasión por la gastronomía costera se fusionan para ofrecerte momentos auténticos.</p>
+                </div>
+                <div class="about-features">
+                    <div class="feature">
+                        <div class="feature-icon">🌊</div>
+                        <div class="feature-text">
+                            <h4>Ingredientes Frescos</h4>
+                            <p>Pesca del día seleccionada cuidadosamente para garantizar máxima frescura y calidad en cada plato.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">👨‍🍳</div>
+                        <div class="feature-text">
+                            <h4>Cocina Artesanal</h4>
+                            <p>Preparación cuidadosa y técnicas tradicionales que honran los sabores auténticos del océano.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🏖️</div>
+                        <div class="feature-text">
+                            <h4>Ambiente Costero</h4>
+                            <p>Diseño inspirado en las playas vírgenes, donde cada detalle te transporta a un paraíso marino.</p>
+                        </div>
+                    </div>
+                    <div class="feature">
+                        <div class="feature-icon">🚗</div>
+                        <div class="feature-text">
+                            <h4>Parqueo Bajo Techo</h4>
+                            <p>Comodidad y seguridad para tu vehículo mientras disfrutas de tu experiencia gastronómica.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <div class="container">
+            <h2 class="section-title">Nuestro Menú</h2>
+            <div class="menu-grid">
+                <div class="menu-category">
+                    <h3>🌊 Ceviches</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-name">Ceviche Ilha da Costa</div>
+                            <div class="menu-item-description">Nuestra receta de la casa. Pesca del día en cubos, leche de tigre clásica, cebolla morada, cilantro, camote glaseado y maíz tostado.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Ceviche Tropical de Coco</div>
+                            <div class="menu-item-description">Cubos de corvina y camarón fresco, marinados en una emulsión de leche de coco, jugo de lima, mango maduro, chile dulce y un toque de menta.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Ceviche de Fuego y Pacífico</div>
+                            <div class="menu-item-description">Pulpo y camarón flambeados al carbón, terminados en una leche de tigre de chile ahumado, aguacate tatemado y chips de plátano verde.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>🦪 Ostras</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-name">Ostras al Natural</div>
+                            <div class="menu-item-description">Ostras frescas de la costa, servidas con limones jugosos, mignonette de vinagre de manzana con chalotas y salsa picante artesanal de la casa.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Ostras Brisa Marina</div>
+                            <div class="menu-item-description">Ostras frescas coronadas con granizado de ginebra y agua de pepino, perlas de caviar de lima y un toque de eneldo fresco.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>🥢 Entradas Frías</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-name">Tartar de Atún Rojo</div>
+                            <div class="menu-item-description">Atún aleta amarilla cortado a cuchillo, marinado en soya-sésamo, sobre aguacate cremoso, mayonesa de sriracha y texturas de alga nori.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Carpaccio de Pulpo</div>
+                            <div class="menu-item-description">Láminas extra finas de pulpo cocido a la perfección, aderezadas con emulsión de aceitunas botija, alcaparras crujientes y aceite de oliva virgen extra.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Aguachile Verde</div>
+                            <div class="menu-item-description">Camarones abiertos en mariposa, sumergidos en una mezcla vibrante de cilantro, chile jalapeño, pepino y jugo de limón con rábano y cebolla encurtida.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>🍽️ Platos Fuertes</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-name">Pescado Entero Frito "Ilha"</div>
+                            <div class="menu-item-description">Pesca del día entera y crujiente, servida con patacones, ensalada criolla de la costa y salsa tártara casera de alcaparras.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Salmón en Costra de Hierbas</div>
+                            <div class="menu-item-description">Filete de salmón a la plancha con costra de eneldo y panko, servido sobre puré de coliflor trufado y espárragos salteados al ajillo.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Atún Sellado en Sésamo</div>
+                            <div class="menu-item-description">Medallón de atún rojo con costra de ajonjolí, sellado al término ideal, acompañado de vegetales al wok y reducción de salsa teriyaki.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>👨‍🍳 Especialidades del Chef</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-name">Pulpo a la Parilla</div>
+                            <div class="menu-item-description">Tentáculos marinados en pimentón ahumado y asados al carbón, acompañados de papas baby rústicas y chimichurri de la casa.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Langosta Gratinada</div>
+                            <div class="menu-item-description">Cola de langosta abierta, cocida a la parrilla con mantequilla de ajo y hierbas, gratinada con queso parmesano reggiano. Servida con ensalada verde.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Risotto de Mariscos</div>
+                            <div class="menu-item-description">Cremoso arroz arborio en concentrado caldo de centolla, con camarones, mejillones y calamares, perfumado con azafrán y vino blanco.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="menu-category">
+                    <h3>🍽️ Para Compartir</h3>
+                    <div class="menu-items">
+                        <div class="menu-item">
+                            <div class="menu-item-name">Gran Fritura de la Costa</div>
+                            <div class="menu-item-description">Canasta abundante con calamares crujientes, camarones rebosados, deditos de pescado y yucas fritas con mayonesa de ajo y salsa golf.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Cazuela de Mariscos</div>
+                            <div class="menu-item-description">Olla humeante de mariscos variados cocidos a fuego lento en base de tomate, leche de coco, vino blanco y hierbas, con pan de masa madre tostado.</div>
+                        </div>
+                        <div class="menu-item">
+                            <div class="menu-item-name">Parrillada Marítima</div>
+                            <div class="menu-item-description">Tabla espectacular con pulpo, camarones jumbo, calamares, mejillones y filetes de pescado a la brasa, vegetales asados y tres salsas de la casa.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctanos</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">📍</div>
+                        <div>
+                            <h4>Ubicación</h4>
+                            <p>Centro Comercial del Este</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">📞</div>
+                        <div>
+                            <h4>Teléfono</h4>
+                            <p>88808880</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">✉️</div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>ilhacr@gmail.com</p>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <div class="contact-icon">🕐</div>
+                        <div>
+                            <h4>Horario</h4>
+                            <div class="horario-item">
+                                <span class="horario-dia">Martes a Viernes:</span>
+                                <span>12:00 - 15:00 / 18:00 - 22:00</span>
+                            </div>
+                            <div class="horario-item">
+                                <span class="horario-dia">Sábado:</span>
+                                <span>12:00 - 22:00</span>
+                            </div>
+                            <div class="horario-item">
+                                <span class="horario-dia">Domingo:</span>
+                                <span>12:00 - 17:00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <form class="contact-form" onsubmit="handleSubmit(event)">
+                    <div class="form-group">
+                        <label for="nombre">Nombre</label>
+                        <input type="text" id="nombre" name="nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" id="telefono" name="telefono">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensaje">Mensaje</label>
+                        <textarea id="mensaje" name="mensaje" required></textarea>
+                    </div>
+
+                    <button type="submit" class="btn">Enviar Mensaje</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Ilha da Costa. Todos los derechos reservados.</p>
+        <p>Donde el mar y la gastronomía se encuentran.</p>
+    </footer>
+
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const nav = document.getElementById('nav');
+
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+        });
+
+        const navLinks = nav.querySelectorAll('a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+            });
+        });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const nombre = document.getElementById('nombre').value;
+            const email = document.getElementById('email').value;
+            const telefono = document.getElementById('telefono').value;
+            const mensaje = document.getElementById('mensaje').value;
+
+            const subject = encodeURIComponent('Nuevo mensaje de ' + nombre);
+            const body = encodeURIComponent(
+                'Nombre: ' + nombre + '\n' +
+                'Email: ' + email + '\n' +
+                'Teléfono: ' + telefono + '\n\n' +
+                'Mensaje:\n' + mensaje
+            );
+
+            window.location.href = 'mailto:ilhacr@gmail.com?subject=' + subject + '&body=' + body;
+
+            event.target.reset();
+        }
+
+        document.addEventListener('click', (event) => {
+            if (!event.target.closest('header')) {
+                nav.classList.remove('active');
             }
-
-            .info-container {
-                grid-template-columns: 1fr;
-            }
-
-            .menu-toggle {
-                display: flex;
-            }
-
-            nav ul {
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0
+        });
+    </script>
+</body>
+</html>
